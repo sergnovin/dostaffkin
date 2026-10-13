@@ -21,4 +21,15 @@ export class DeliveryApi {
         )
       );
   }
+
+  getDeliveryInfo(id: number): Observable<any> {
+    return this.http
+      .get<any>(`https://testologia.ru/delivery/info`, { params: { id } })
+      .pipe(
+        catchError((err) =>
+          of({ error: err?.error?.error ?? 'Ошибка при получении статуса' })
+        )
+      );
+  }
+
 }
